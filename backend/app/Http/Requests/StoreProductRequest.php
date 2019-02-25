@@ -9,7 +9,7 @@ class StoreProductRequest extends FormRequest
 
     public function authorize()
     {
-        return false;
+        return true;
     }
 
 
@@ -17,7 +17,8 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'price' => 'required|integer'
+            'price' => 'required|integer',
+            'preview' => 'required'
         ];
     }
 
@@ -25,7 +26,11 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => $this->get('name'),
             'price' => (int)$this->get('price'),
-            'description' => $this->get('description')
+            'description' => $this->get('description', null)
         ];
+    }
+
+    public function previewFile() {
+        return $this->file('preview');
     }
 }

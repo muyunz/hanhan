@@ -19,8 +19,7 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public function previewImage() {
-        return $this->attachments()->type('preview')->first();
+    public function options() {
+        return $this->hasMany(ProductOption::class);
     }
-
 }

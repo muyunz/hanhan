@@ -1,0 +1,29 @@
+@import "./variables";
+
+body {
+  user-select: none !important;
+}
+
+.icon-padding.ivu-btn {
+  .ivu-icon {
+    margin-left: 10px;
+  }
+}
+
+.icon-padding-right.ivu-btn {
+  .ivu-icon {
+    margin-right: 10px;
+  }
+}
+
+.danger-text {
+  color: #ED254E;
+}
+
+.ivu-form-item {
+  padding-bottom: 8px;
+}
+
+.ivu-btn:focus {
+  box-shadow: none;
+}

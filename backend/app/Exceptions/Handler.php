@@ -47,9 +47,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-
         if ($request->wantsJson()) {
-            $this->handleApiException();
+            $this->handleApiException($request, $exception);
         }
 
         return parent::render($request, $exception);
@@ -74,7 +73,7 @@ class Handler extends ExceptionHandler
         return $this->customApiResponse($exception);
     }
 
-    private function custoamApiResponse($exception)
+    private function customApiResponse($exception)
     {
         if (method_exists($exception, 'getStatusCode')) {
             $statusCode = $exception->getStatusCode();
@@ -107,8 +106,8 @@ class Handler extends ExceptionHandler
         }
 
         if (config('app.debug')) {
-            $response['trace'] = $exception->getTrace();
-            $response['code'] = $exception->getCode();
+            $response['trace'] = method_exists($exception, 'getTrace') ? $exception->getTrace() : null;
+            $response['code'] = method_exists($exception, 'getCode') ? $exception->getCode() : null;
         }
 
         $response['status'] = $statusCode;

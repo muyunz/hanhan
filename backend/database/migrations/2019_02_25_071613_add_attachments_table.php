@@ -16,9 +16,9 @@ class AddAttachmentsTable extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('file_id');
-            $table->string('type');
-            $table->string('name');
-            $table->string('description');
+            $table->string('type')->nullable();
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
 
             $table->string('attachable_type');
             $table->unsignedInteger('attachable_id');
